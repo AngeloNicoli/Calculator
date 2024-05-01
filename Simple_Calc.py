@@ -4,12 +4,13 @@
 ######################################################
 
 from tkinter import *
+from License_text import *
 
-#state = "disabled"
+Ver = 0.8
 
 root = Tk()
-root.title("Simple Calculator")
-root.geometry("400x550")
+root.title("Simple Calculator v" + str(Ver))
+root.geometry("300x600")
 root.configure(bg='#252526')
 
 # Crea la barra per gli input dei dati
@@ -19,19 +20,15 @@ operation_label.grid(row=0, column=0,columnspan=3,padx = 10)
 e = Label(root, width= 25, bg="#3e3e42",fg='white',anchor ='e')
 e.grid(row=1, column=0, columnspan=3, padx = 10, pady=5, ipady=10)
 
-
 Term_List= {"First_Number": 0,"Second_Numer": 0,"Answer":0}
 Operation_text = [""]
 
 print(Term_List["First_Number"])
 
-# e.insert(0, "Enter Your Name: ")
-
-
 button100 =[0]
         
 def SciCalculator_Gui():
-    button_100 =  Button(root, text="1", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(1))
+    button_100 =  Button(root, text="sin", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(1), state = DISABLED)
     button_100.grid(row=2,column=40)
     button100[0]= button_100
 
@@ -39,74 +36,25 @@ def SciCalculator_Gui():
 def change_gui():
     print("change")
     SciCalculator_Gui()
-    root.geometry("500x550")
+    root.geometry("500x600")
 
 def return_gui():
     button100[0].destroy()
-    root.geometry("300x550")
+    root.geometry("300x600")
 
 
 root.bind("b", return_gui)
 
 root.bind("a", change_gui)
 
+def Show_License():
+    openNewWindow(root)
 
-def res1():
-     root.geometry('{}x{}'.format(800,600))
-     print("Resolution Changed")
-
-def res2():
-     root.geometry('{}x{}'.format(1024, 700))
-     print("Resolution Changed")
-
-def res3():
-     root.geometry('{}x{}'.format(1400, 750))
-     print("Resolution Changed")
-
-def res4():
-     root.geometry('{}x{}'.format(1400, 750))
-     print("Resolution Changed")
-
-
-# Create Menu bar
-menubar = Menu(root)
-root.config(menu=menubar)
-
-
-# First Menu column
-filemenu = Menu(menubar, tearoff=0)
-menubar.add_cascade(label="File", menu=filemenu)
-
-filemenu.add_command(label="New")
-filemenu.add_separator()
-filemenu.add_command(label="Exit", command=root.quit)
-
-# Second Menu column
-editmenu = Menu(menubar,tearoff=0)
-menubar.add_cascade(label="Mode", menu=editmenu)
-
-editmenu.add_command(label="Standard", command= return_gui )
-editmenu.add_command(label="Scientific", command= change_gui)
-
-# Third Menu column
-helpmenu = Menu(menubar, tearoff=0)
-menubar.add_cascade(label="Help", menu=helpmenu)
-
-helpmenu.add_command(label="Help Index")
-helpmenu.add_command(label="License")
-
-# Fourth Menu column
-resmenu = Menu(menubar, tearoff=0)
-menubar.add_cascade(label="Resolution", menu=resmenu)
-
-resmenu.add_command(label="Resolution: 800x600",command=res1)
-resmenu.add_command(label="Resolution: 1024x700",command=res2)
-resmenu.add_command(label="Resolution: 1400x750",command=res3)
-
-
+# Operation Log 
 def Operation_Log(new_content):
     Operation_text[0] += new_content
     operation_label.config(text = Operation_text[0])
+
 
 def button_click(number):
     # e.delete(0,END) (Mostra un solo carattere alla volta)
@@ -142,16 +90,79 @@ def button_division():
     math = "division"
     Operation_Log(str("/"))
 
+def button_add_point():
+    global f_num
+    global math
+    math = "division"
+    Operation_Log(str("."))
+
 def button_equals():
-    e.config(text=str(eval(Operation_text[0])))
+    print(Operation_text[0])
+    e.config(text = str(eval(Operation_text[0])))
 
-    
-#  Define Buttons
 
-# ERRATO button_1 =  Button(root, text="1", padx=40, pady=20, command=lambda: button_click())
-# Se non usiamo lambda, non possiamo usare le parentesi quando chiamiamo la funzione() 
+def Clear_Text(): 
+    Operation_text[0] = ""
+    operation_label.config(text = Operation_text[0])
+
+def Menu_Bar():
+    # Create Menu bar
+    menubar = Menu(root)
+    root.config(menu=menubar)
+
+    # First Menu column
+    filemenu = Menu(menubar, tearoff=0)
+    menubar.add_cascade(label="File", menu=filemenu)
+
+    filemenu.add_command(label="New")
+    filemenu.add_separator()
+    filemenu.add_command(label="Exit", command=root.quit)
+
+    # Second Menu column
+    editmenu = Menu(menubar,tearoff=0)
+    menubar.add_cascade(label="Mode", menu=editmenu)
+
+    editmenu.add_command(label="Standard", command= return_gui )
+    editmenu.add_command(label="Scientific", command= change_gui)
+
+    # Third Menu column
+    helpmenu = Menu(menubar, tearoff=0)
+    menubar.add_cascade(label="Help", menu=helpmenu)
+
+    helpmenu.add_command(label="Help Index")
+    helpmenu.add_command(label="License", command = Show_License)
+
+    # Fourth Menu column
+    resmenu = Menu(menubar, tearoff=0)
+    menubar.add_cascade(label="Resolution", menu=resmenu)
+
+    resmenu.add_command(label="Resolution: 800x600",command=res1)
+    resmenu.add_command(label="Resolution: 1024x700",command=res2)
+    resmenu.add_command(label="Resolution: 1400x750",command=res3)
+
+
+def res1():
+     root.geometry('{}x{}'.format(800,600))
+     print("Resolution Changed")
+
+def res2():
+     root.geometry('{}x{}'.format(1024, 700))
+     print("Resolution Changed")
+
+def res3():
+     root.geometry('{}x{}'.format(1400, 750))
+     print("Resolution Changed")
+
+def res4():
+     root.geometry('{}x{}'.format(1400, 750))
+     print("Resolution Changed")
+
+
+
 
 def Calculator_Gui():
+    Clear_Log =  Button(root, text="Clear Log",pady=20 , bg="#3e3e42",fg='white', command=Clear_Text)
+
     button_1 =  Button(root, text="1",pady=20 , bg="#3e3e42",fg='white', command=lambda: button_click(1))
     button_2 =  Button(root, text="2", pady=20, bg="#3e3e42",fg='white', command=lambda: button_click(2))
     button_3 =  Button(root, text="3", pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(3))
@@ -179,9 +190,9 @@ def Calculator_Gui():
 
     button_sqrt= Button(root, text="√x",bg="#043738",fg='white',  padx=40, pady=20, command= button_division)
 
-    button_power= Button(root, text="x^2",bg="#043738",fg='white',  padx=40, pady=20, command= button_division)
+    button_power= Button(root, text="x²",bg="#043738",fg='white',  padx=40, pady=20, command= button_division)
 
-    button_point= Button(root, text=".",bg="#3e3e42",fg='white',  padx=40, pady=20, command= button_division)
+    button_point= Button(root, text=".",bg="#3e3e42",fg='white',  padx=40, pady=20, command= button_add_point)
 
     # Put the buttons on the screen
 
@@ -211,7 +222,12 @@ def Calculator_Gui():
     button_sqrt.grid(row=8,column=2)
     button_power.grid(row=8,column=1)
 
+    Clear_Log.grid(row=9,column=2, sticky=W+E)
 
+
+Menu_Bar()
 Calculator_Gui()
+
+#print(Operation_text[0])
 
 root.mainloop()
