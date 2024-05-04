@@ -5,54 +5,74 @@
 
 from tkinter import *
 from License_text import *
+import math as mt
 
-Ver = 0.8
+Ver = 0.9  # Software Version
 
+#  Initialize Window
 root = Tk()
-root.title("Simple Calculator v" + str(Ver))
-root.geometry("300x600")
-root.configure(bg='#252526')
 
-# Crea la barra per gli input dei dati
-operation_label = Label(root,text = "",bg="#3e3e42", borderwidth=1, width= 25, height=2,fg='white',anchor ='e')
-operation_label.grid(row=0, column=0,columnspan=3,padx = 10)
-
-e = Label(root, width= 25, bg="#3e3e42",fg='white',anchor ='e')
-e.grid(row=1, column=0, columnspan=3, padx = 10, pady=5, ipady=10)
-
-Term_List= {"First_Number": 0,"Second_Numer": 0,"Answer":0}
 Operation_text = [""]
 
-print(Term_List["First_Number"])
+operation_label = Label(root,text = "",bg="#3e3e42", borderwidth=1, width= 25, height=2,fg='white',anchor ='e')
+e = Label(root, width= 25, bg="#3e3e42",fg='white',anchor ='e')
 
-button100 =[0]
+
+def Initialize_Window():
+    root.title("Simple Calculator v" + str(Ver))
+    root.geometry("300x600")
+    root.configure(bg='#252526')
+    # Crea la barra per gli input dei dati
+    operation_label.grid(row=0, column=0,columnspan=3,padx = 10)
+    e.grid(row=1, column=0, columnspan=3, padx = 10, pady=5, ipady=10)
+
+    Term_List= {"First_Number": 0,"Second_Numer": 0,"Answer":0}
+    print(Term_List["First_Number"])
+
+
+
+def sin_text(p):
+    global f_num
+    global math
+    math = "division"
+    Operation_Log(str("mt.sin"))
+
+def cos_text(p):
+    global f_num
+    global math
+    math = "division"
+    Operation_Log(str("mt.cos"))
+
+def tan_text(p):
+    global f_num
+    global math
+    math = "division"
+    Operation_Log(str("mt.tan"))
+
+
         
 def SciCalculator_Gui():
-    button_sin =  Button(root, text="sin", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(1), state = DISABLED)
+    button_sin =  Button(root, text="sin", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: sin_text(1))
     button_sin.grid(row=2,column=40)
 
-    button_cos =  Button(root, text="cos", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(1), state = DISABLED)
+    button_cos =  Button(root, text="cos", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: cos_text(1))
     button_cos.grid(row=3,column=40)
 
-    button_tan =  Button(root, text="tan", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(1), state = DISABLED)
+    button_tan =  Button(root, text="tan", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: tan_text(1))
     button_tan.grid(row=4,column=40)
-
-    button100[0]= button_sin
 
 
 def change_gui():
     print("change")
     SciCalculator_Gui()
-    root.geometry("500x600")
+    root.geometry("400x600")
 
 def return_gui():
-    button100[0].destroy()
+    #button100[0].destroy()
     root.geometry("300x600")
 
-
-root.bind("b", return_gui)
-
-root.bind("a", change_gui)
+# root.bind("b", return_gui)
+# root.bind("a", change_gui)
 
 def Show_License():
     openNewWindow(root)
@@ -61,7 +81,6 @@ def Show_License():
 def Operation_Log(new_content):
     Operation_text[0] += new_content
     operation_label.config(text = Operation_text[0])
-
 
 def button_click(number):
     # e.delete(0,END) (Mostra un solo carattere alla volta)
@@ -97,6 +116,40 @@ def button_division():
     math = "division"
     Operation_Log(str("/"))
 
+
+def button_add_sqrt():
+    global f_num
+    global math
+    math = "division"
+    Operation_Log(str("mt.sqrt("))
+
+ 
+def button_add_sin():
+    global f_num
+    global math
+    math = "division"
+    Operation_Log(str("mt.sqrt("))   
+
+def button_add_cos():
+    global f_num
+    global math
+    math = "division"
+    Operation_Log(str("mt.sqrt("))  
+
+
+def button_add_tan():
+    global f_num
+    global math
+    math = "division"
+    Operation_Log(str("mt.sqrt("))  
+
+
+def button_add_power():
+    global f_num
+    global math
+    pass  
+
+
 def button_add_point():
     global f_num
     global math
@@ -104,8 +157,24 @@ def button_add_point():
     Operation_Log(str("."))
 
 def button_equals():
-    print(Operation_text[0])
-    e.config(text = str(eval(Operation_text[0])))
+    global f_num
+    global math
+    
+    print("Operation is" + Operation_text[0])
+    print(Operation_text)
+    print(type(Operation_text[0]))
+    print(type("math.sqrt(9)"))
+    
+    a = "math.sqrt(9)"
+
+    if Operation_text[0] != a:
+        print("Different Value")
+    else:
+        print("Same Value")
+
+    res = eval(Operation_text[0])
+    print(res)
+    e.config(text = str(res))
 
 
 def Clear_Text(): 
@@ -164,10 +233,8 @@ def res4():
      root.geometry('{}x{}'.format(1400, 750))
      print("Resolution Changed")
 
-
-
-
 def Calculator_Gui():
+
     Clear_Log =  Button(root, text="Clear Log",pady=20 , bg="#3e3e42",fg='white', command=Clear_Text)
 
     button_1 =  Button(root, text="1",pady=20 , bg="#3e3e42",fg='white', command=lambda: button_click(1))
@@ -195,7 +262,7 @@ def Calculator_Gui():
     button_multiply = Button(root, text="*",bg="#043738",fg='white',  padx=40, pady=20, command= button_multiplication)
     button_divide= Button(root, text="/",bg="#043738",fg='white',  padx=40, pady=20, command= button_division)
 
-    button_sqrt= Button(root, text="√x",bg="#043738",fg='white',  padx=40, pady=20, command= button_division)
+    button_sqrt= Button(root, text="√x",bg="#043738",fg='white',  padx=40, pady=20, command= button_add_sqrt)
 
     button_power= Button(root, text="x²",bg="#043738",fg='white',  padx=40, pady=20, command= button_division)
 
@@ -232,6 +299,7 @@ def Calculator_Gui():
     Clear_Log.grid(row=9,column=2, sticky=W+E)
 
 
+Initialize_Window()
 Menu_Bar()
 Calculator_Gui()
 
