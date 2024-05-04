@@ -28,9 +28,16 @@ print(Term_List["First_Number"])
 button100 =[0]
         
 def SciCalculator_Gui():
-    button_100 =  Button(root, text="sin", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(1), state = DISABLED)
-    button_100.grid(row=2,column=40)
-    button100[0]= button_100
+    button_sin =  Button(root, text="sin", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(1), state = DISABLED)
+    button_sin.grid(row=2,column=40)
+
+    button_cos =  Button(root, text="cos", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(1), state = DISABLED)
+    button_cos.grid(row=3,column=40)
+
+    button_tan =  Button(root, text="tan", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(1), state = DISABLED)
+    button_tan.grid(row=4,column=40)
+
+    button100[0]= button_sin
 
 
 def change_gui():
