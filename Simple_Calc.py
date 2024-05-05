@@ -29,39 +29,7 @@ def Initialize_Window():
     Term_List= {"First_Number": 0,"Second_Numer": 0,"Answer":0}
     print(Term_List["First_Number"])
 
-
-
-def sin_text(p):
-    global f_num
-    global math
-    math = "division"
-    Operation_Log(str("mt.sin"))
-
-def cos_text(p):
-    global f_num
-    global math
-    math = "division"
-    Operation_Log(str("mt.cos"))
-
-def tan_text(p):
-    global f_num
-    global math
-    math = "division"
-    Operation_Log(str("mt.tan"))
-
-
-        
-def SciCalculator_Gui():
-    button_sin =  Button(root, text="sin", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: sin_text(1))
-    button_sin.grid(row=2,column=40)
-
-    button_cos =  Button(root, text="cos", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: cos_text(1))
-    button_cos.grid(row=3,column=40)
-
-    button_tan =  Button(root, text="tan", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: tan_text(1))
-    button_tan.grid(row=4,column=40)
-
-
+      
 def change_gui():
     print("change")
     SciCalculator_Gui()
@@ -87,35 +55,13 @@ def button_click(number):
     Operation_Log(str(number))
     #print(number)
 
+def Add_Operator(number):
+    Operation_Log(str(number))
+
 def button_del():
     Operation_text[0] = ""
     operation_label.config(text = Operation_text[0])
     e.config(text="0.0")
-
-def button_sum():
-    global f_num
-    global math
-    math = "addition"
-    Operation_Log(str("+"))
-
-def button_subtraction():
-    global f_num
-    global math
-    math = "subtraction"
-    Operation_Log(str("-"))
-
-def button_multiplication():
-    global f_num
-    global math
-    math = "multiplication"
-    Operation_Log(str("*"))
-
-def button_division():
-    global f_num
-    global math
-    math = "division"
-    Operation_Log(str("/"))
-
 
 def button_add_sqrt():
     global f_num
@@ -233,6 +179,33 @@ def res4():
      root.geometry('{}x{}'.format(1400, 750))
      print("Resolution Changed")
 
+
+def SciCalculator_Gui():
+    button_sin =  Button(root, text="sin", padx=40, pady=20,bg="#3e3e42",fg='white',  command=lambda: Add_Operator("mt.sin("))  
+    button_sin.grid(row=2,column=40)
+
+    button_cos =  Button(root, text="cos", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: Add_Operator("mt.cos("))
+    button_cos.grid(row=3,column=40)
+
+    button_tan =  Button(root, text="tan", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: Add_Operator("mt.tan("))
+    button_tan.grid(row=4,column=40)    
+    
+    button_exp=  Button(root, text="exp", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: Add_Operator("mt.exp("))
+    button_exp.grid(row=5,column=40)
+
+    button_exp=  Button(root, text="exp", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: Add_Operator("mt.exp("))
+    button_exp.grid(row=5,column=40)
+
+    button_fact=  Button(root, text="fact", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: Add_Operator("mt.factorial("))
+    button_fact.grid(row=6,column=40)
+
+    button_const_e=  Button(root, text="e   ", padx=40, pady=20,bg="#23395d",fg='white', command=lambda: Add_Operator("mt.e"))
+    button_const_e.grid(row=7,column=40)
+
+    button_const_pi =  Button(root, text="π   ", padx=40, pady=20,bg="#23395d",fg='white', command=lambda: Add_Operator("mt.pi"))
+    button_const_pi.grid(row=8,column=40)
+
+
 def Calculator_Gui():
 
     Clear_Log =  Button(root, text="Clear Log",pady=20 , bg="#3e3e42",fg='white', command=Clear_Text)
@@ -240,12 +213,15 @@ def Calculator_Gui():
     button_1 =  Button(root, text="1",pady=20 , bg="#3e3e42",fg='white', command=lambda: button_click(1))
     button_2 =  Button(root, text="2", pady=20, bg="#3e3e42",fg='white', command=lambda: button_click(2))
     button_3 =  Button(root, text="3", pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(3))
+
     button_4 =  Button(root, text="4", pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(4))
     button_5 =  Button(root, text="5", pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(5))
     button_6 =  Button(root, text="6", pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(6))
+
     button_7 =  Button(root, text="7", pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(7))
     button_8 =  Button(root, text="8", pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(8))
     button_9 =  Button(root, text="9", pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(9))
+
     button_0 =  Button(root, text="0", pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(0))
 
     button_Par_OPEN =  Button(root, text="(", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click("("))
@@ -257,16 +233,16 @@ def Calculator_Gui():
     button_equal = Button(root, text="=",bg="#154020",fg='white', padx=91, pady=20, command=button_equals)
     button_clear = Button(root, text="Clear",bg="#561a27",fg='white', padx=80, pady=20, command=button_del)
 
-    button_add = Button(root, text="+", bg="#043738",fg='white', padx=39, pady=19, command=button_sum)
-    button_subtract = Button(root, text="-",bg="#043738",fg='white',  padx=40, pady=20, command= button_subtraction)
-    button_multiply = Button(root, text="*",bg="#043738",fg='white',  padx=40, pady=20, command= button_multiplication)
-    button_divide= Button(root, text="/",bg="#043738",fg='white',  padx=40, pady=20, command= button_division)
+    button_add = Button(root, text="+", bg="#043738",fg='white', padx=39, pady=19,  command=lambda: Add_Operator("+"))
+    button_subtract = Button(root, text="-",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("-"))
+    button_multiply = Button(root, text="*",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("*"))
+    button_divide= Button(root, text="/",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("/"))
 
-    button_sqrt= Button(root, text="√x",bg="#043738",fg='white',  padx=40, pady=20, command= button_add_sqrt)
+    button_sqrt= Button(root, text="√x",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("mt.sqrt("))  
 
-    button_power= Button(root, text="x²",bg="#043738",fg='white',  padx=40, pady=20, command= button_division)
+    button_power= Button(root, text="x²",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("**"))
 
-    button_point= Button(root, text=".",bg="#3e3e42",fg='white',  padx=40, pady=20, command= button_add_point)
+    button_point= Button(root, text=".",bg="#3e3e42",fg='white',  padx=40, pady=20,  command=lambda: Add_Operator("."))
 
     # Put the buttons on the screen
 
