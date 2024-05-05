@@ -224,19 +224,19 @@ def Calculator_Gui():
 
     button_0 =  Button(root, text="0", pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(0))
 
-    button_Par_OPEN =  Button(root, text="(", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click("("))
+    button_Par_OPEN =  Button(root, text=" ( ", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click("("))
     button_Par_OPEN.grid(row=9,column=0)
 
-    button_Par_Cls =  Button(root, text=")", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(")"))
+    button_Par_Cls =  Button(root, text=" ) ", padx=40, pady=20,bg="#3e3e42",fg='white', command=lambda: button_click(")"))
     button_Par_Cls.grid(row=9,column=1)
 
     button_equal = Button(root, text="=",bg="#154020",fg='white', padx=91, pady=20, command=button_equals)
     button_clear = Button(root, text="Clear",bg="#561a27",fg='white', padx=80, pady=20, command=button_del)
 
-    button_add = Button(root, text="+", bg="#043738",fg='white', padx=39, pady=19,  command=lambda: Add_Operator("+"))
-    button_subtract = Button(root, text="-",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("-"))
-    button_multiply = Button(root, text="*",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("*"))
-    button_divide= Button(root, text="/",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("/"))
+    button_add = Button(root, text=" + ", bg="#043738",fg='white', padx=39, pady=19,  command=lambda: Add_Operator("+"))
+    button_subtract = Button(root, text=" - ",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("-"))
+    button_multiply = Button(root, text=" * ",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("*"))
+    button_divide= Button(root, text=" /  ",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("/"))
 
     button_sqrt= Button(root, text="√x",bg="#043738",fg='white',  padx=40, pady=20, command=lambda: Add_Operator("mt.sqrt("))  
 
