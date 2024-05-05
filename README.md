@@ -1,4 +1,5 @@
-A Simple calculator written in Python.
+A calculator written in Python.
+There are 2 modes: Simple Calculator and Scientific Calculator.
 
 <p float="left">
 
